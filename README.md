@@ -21,13 +21,13 @@ src/main/dosw/
         └── Ejercicio1..10    dos patrones de diseño sobre un caso de negocio real
 ```
 
-> Los ejercicios de **`semana3/Taller4`** ya cuentan cada uno con su propio README (descripción del problema, solución propuesta, patrones implementados, estructura de clases y ejecución), así que aquí solo se indexan. El resto de la bitácora (semana 1 y semana 2) se describe completa en este mismo documento.
+> Los ejercicios de `semana3/Taller4` ya cuentan cada uno con su propio README (descripción del problema, solución propuesta, patrones implementados, estructura de clases y ejecución), así que aquí solo se indexan. El resto de la bitácora (semana 1 y semana 2) se describe completa en este mismo documento.
 
 ---
 
 ## Semana 1 — Streams (`semana1/streams`)
 
-Cinco ejercicios introductorios a la API de Streams de Java (`filter`, `map`, `sorted`, `collect`, `reduce`, `anyMatch`) usando listas de números, palabras y `record` (usuarios, transacciones).
+Cinco ejercicios introductorios a la API de Streams de Java (filter, map, sorted, collect, reduce, anyMatch) usando listas de números, palabras y `record` (usuarios, transacciones).
 
 | Clase | Descripción |
 |---|---|
