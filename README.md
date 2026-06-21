@@ -87,6 +87,122 @@ Cada carpeta EpatronN aísla un único patrón GoF aplicado a un mini-caso de us
 | Epatron11 | Strategy | Aplicación de navegación que calcula rutas (más rápida, más corta, escénica, transporte público) según la estrategia activa. |
 | Epatron12 | Strategy | Ordenador de arreglos que intercambia algoritmos de ordenamiento (burbuja, selección, inserción) en tiempo de ejecución. |
 
+A continuación, el esquema de clases de cada ejercicio de patrones.
+
+#### Epatron1 — Factory Method
+
+| Clase / Interfaz | Rol |
+|---|---|
+| MetodoPago | Interfaz del producto (procesarPago) |
+| TarjetaCredito, PayPal, TransferenciaBancaria | Productos concretos |
+| ProcesadorPago | Creador abstracto, declara el factory method y el flujo común (realizarPago) |
+| ProcesadorTarjeta, ProcesadorPayPal, ProcesadorTransferencia | Creadores concretos, cada uno fabrica su propio MetodoPago |
+| Main | Clase de prueba, ejecuta el flujo con cada procesador |
+
+#### Epatron2 — Abstract Factory
+
+| Clase / Interfaz | Rol |
+|---|---|
+| Control, Juego, InterfazGrafica | Interfaces de productos |
+| ControlPlayStation, JuegoPlayStation, InterfazGraficaPlayStation | Familia de productos PlayStation |
+| ControlXbox, JuegoXbox, InterfazGraficaXbox | Familia de productos Xbox |
+| ConsolaFactory | Fábrica abstracta |
+| PlayStationFactory, XboxFactory | Fábricas concretas |
+| MotorJuego | Cliente, arma los componentes a través de las interfaces sin conocer la consola concreta |
+| Main | Clase de prueba |
+
+#### Epatron3 — Builder
+
+| Clase / Interfaz | Rol |
+|---|---|
+| Muneco | Producto complejo a construir |
+| MunecoBuilder | Interfaz constructora, declara los pasos del ensamblaje |
+| MunecoAccionBuilder, MunecoClasicaBuilder | Builders concretos |
+| FabricaMuneco | Director, ejecuta la secuencia de construcción sobre el builder activo |
+| Main | Clase de prueba |
+
+#### Epatron4 — Adapter
+
+| Clase / Interfaz | Rol |
+|---|---|
+| SurtidorGasolineria | Interfaz objetivo esperada por el cliente |
+| VehiculoCombustion | Implementación nativa de la interfaz objetivo |
+| CargadorElectricoRapido, CargadorElectricoLento | Clases adaptadas, interfaz incompatible (cargar) |
+| AdaptadorCargadorRapido, AdaptadorCargadorLento | Adaptadores, traducen abastecer a cargar |
+| Main | Clase de prueba |
+
+#### Epatron5 — Bridge
+
+| Clase / Interfaz | Rol |
+|---|---|
+| Forma | Abstracción, mantiene una referencia a Color |
+| Circulo, Cuadrado, Triangulo | Abstracciones refinadas |
+| Color | Interfaz de implementación (aplicarColor) |
+| Rojo, Azul, Verde | Implementaciones concretas del color |
+| Main | Clase de prueba |
+
+#### Epatron6 — Composite
+
+| Clase / Interfaz | Rol |
+|---|---|
+| ItemBodega | Componente, interfaz común para hojas y compuestos |
+| Producto | Hoja, artículo individual con precio fijo |
+| Caja | Compuesto, contiene una lista de ItemBodega y agrega sus resultados |
+| Main | Clase de prueba |
+
+#### Epatron7 — Decorator
+
+| Clase / Interfaz | Rol |
+|---|---|
+| Barco | Componente, contrato común |
+| BarcoBase | Componente concreto, barco sin módulos |
+| ModuloBarco | Decorador abstracto, envuelve un Barco y delega por defecto |
+| BlindajeReforzado, RadarAvanzado, Misiles, SistemaAntitorpedos | Decoradores concretos |
+| Main | Clase de prueba |
+
+#### Epatron8 — Chain of Responsibility
+
+| Clase / Interfaz | Rol |
+|---|---|
+| ControlMigratorio | Manejador abstracto, mantiene el enlace al siguiente control |
+| ControlPasaporteVisa, ControlAntecedentes, ControlMotivoViaje, AprobacionMigracion | Manejadores concretos, cada uno valida un aspecto y delega al siguiente |
+| Viajero | Objeto de solicitud que recorre la cadena |
+| Main | Clase de prueba |
+
+#### Epatron9 — Command
+
+| Clase / Interfaz | Rol |
+|---|---|
+| Comando | Interfaz del comando (ejecutar) |
+| ComandoCaminar, ComandoSaltar, ComandoAtacar, ComandoDefenderse | Comandos concretos, encapsulan la invocación sobre Personaje |
+| Personaje | Receptor, clase que realmente ejecuta la acción |
+| ControlJuego | Invocador, dispara el comando asignado a cada botón |
+| Main | Clase de prueba |
+
+#### Epatron10 — Pendiente
+
+| Clase / Interfaz | Rol |
+|---|---|
+| test | Clase vacía, no se llegó a implementar el caso de uso ni el patrón |
+
+#### Epatron11 — Strategy
+
+| Clase / Interfaz | Rol |
+|---|---|
+| EstrategiaRuta | Interfaz de la estrategia (calcularRuta) |
+| RutaMasRapida, RutaMasCorta, RutaEscenica, RutaTransportePublico | Estrategias concretas |
+| AplicacionNavegacion | Contexto, usa la estrategia activa para calcular la ruta |
+| Main | Clase de prueba |
+
+#### Epatron12 — Strategy
+
+| Clase / Interfaz | Rol |
+|---|---|
+| EstrategiaOrdenamiento | Interfaz de la estrategia (ordenar) |
+| OrdenamientoBurbuja, OrdenamientoSeleccion, OrdenamientoInsercion | Algoritmos concretos de ordenamiento |
+| Ordenador | Contexto, ejecuta el ordenamiento usando la estrategia activa |
+| Main | Clase de prueba |
+
 ---
 
 ## Semana 3 — Taller 4: Combinación de Patrones (semana3/Taller4)
@@ -116,7 +232,6 @@ La identidad de la marca también refleja rasgos de la personalidad de su creado
 
 El manual establece las bases visuales y comunicativas de la marca, garantizando coherencia en su presentación y fortaleciendo el mensaje de innovación, rendimiento y legado que caracteriza a Scuderia 44 Legacy.
 
-
 ---
 
 ## Tecnologías
@@ -124,6 +239,20 @@ El manual establece las bases visuales y comunicativas de la marca, garantizando
 - Lenguaje: Java (uso de record, Stream API, Comparator, Collectors avanzados)
 - IDE: IntelliJ IDEA (carpeta `.idea/` incluida)
 
+## Ejecución general
 
+Cada ejercicio es autocontenido. Para los patrones de la semana 2 y el Taller 4:
+
+```bash
+cd src/main/dosw/<semana>/<carpeta-del-ejercicio>
+javac *.java
+java Main
+```
+
+Para los streams de la semana 1 y los Ejercicio1..20 de la semana 2, cada clase trae su propio main y se ejecuta individualmente:
+
+```bash
+cd src/main/dosw/semana1/streams
+javac Ejercicio1.java
 java main.dosw.semana1.streams.Ejercicio1
 ```
