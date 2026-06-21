@@ -124,20 +124,6 @@ El manual establece las bases visuales y comunicativas de la marca, garantizando
 - Lenguaje: Java (uso de record, Stream API, Comparator, Collectors avanzados)
 - IDE: IntelliJ IDEA (carpeta `.idea/` incluida)
 
-## Ejecución general
 
-Cada ejercicio es autocontenido. Para los patrones de la semana 2 y el Taller 4:
-
-```bash
-cd src/main/dosw/<semana>/<carpeta-del-ejercicio>
-javac *.java
-java Main
-```
-
-Para los streams de la semana 1 y los Ejercicio1..20 de la semana 2, cada clase trae su propio main y se ejecuta individualmente:
-
-```bash
-cd src/main/dosw/semana1/streams
-javac Ejercicio1.java
 java main.dosw.semana1.streams.Ejercicio1
 ```
