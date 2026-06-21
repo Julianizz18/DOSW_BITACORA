@@ -21,56 +21,56 @@ src/main/dosw/
         └── Ejercicio1..10    dos patrones de diseño sobre un caso de negocio real
 ```
 
-> Los ejercicios de `semana3/Taller4` ya cuentan cada uno con su propio README (descripción del problema, solución propuesta, patrones implementados, estructura de clases y ejecución), así que aquí solo se indexan. El resto de la bitácora (semana 1 y semana 2) se describe completa en este mismo documento.
+> Los ejercicios de semana3/Taller4 ya cuentan cada uno con su propio README (descripción del problema, solución propuesta, patrones implementados, estructura de clases y ejecución), así que aquí solo se indexan. El resto de la bitácora (semana 1 y semana 2) se describe completa en este mismo documento.
 
 ---
 
-## Semana 1 — Streams (`semana1/streams`)
+## Semana 1 — Streams (semana1/streams)
 
-Cinco ejercicios introductorios a la API de Streams de Java (filter, map, sorted, collect, reduce, anyMatch) usando listas de números, palabras y `record` (usuarios, transacciones).
+Cinco ejercicios introductorios a la API de Streams de Java (filter, map, sorted, collect, reduce, anyMatch) usando listas de números, palabras y record (usuarios, transacciones).
 
 | Clase | Descripción |
 |---|---|
-| `Ejercicio1` | Filtra de una lista de enteros los valores que son a la vez **mayores a 10** y **pares**. |
-| `Ejercicio2` | Filtra palabras de longitud mayor a 4, las convierte a mayúsculas, las ordena alfabéticamente y cuenta cuántas quedan. |
-| `Ejercicio3` | Usa un `record Usuario(id, nombre, edad, activo)` para extraer los nombres de los usuarios activos. |
-| `Ejercicio4` | Reutiliza el `record Usuario` para filtrar usuarios activos y mayores de edad. |
-| `Ejercicio5` | Usa un `record Transaction(id, amount, approved)` para verificar con `anyMatch` si existen transacciones no aprobadas. |
+| Ejercicio1 | Filtra de una lista de enteros los valores que son a la vez **mayores a 10** y **pares**. |
+| Ejercicio2 | Filtra palabras de longitud mayor a 4, las convierte a mayúsculas, las ordena alfabéticamente y cuenta cuántas quedan. |
+| Ejercicio3 | Usa un record Usuario(id, nombre, edad, activo) para extraer los nombres de los usuarios activos. |
+| Ejercicio4 | Reutiliza el record Usuario para filtrar usuarios activos y mayores de edad. |
+| Ejercicio5 | Usa un record Transaction(id, amount, approved) para verificar con anyMatch si existen transacciones no aprobadas. |
 
 ---
 
-## Semana 2 — Pokémon: Streams y Patrones (`semana2/pokemon`)
+## Semana 2 — Pokémon: Streams y Patrones (semana2/pokemon)
 
-### Streams (`Ejercicio1` a `Ejercicio20`)
+### Streams (Ejercicio1 a Ejercicio20)
 
-20 ejercicios de dificultad creciente sobre dos modelos de apoyo: `Pokemon` (id, nombre, tipo, nivel, poderCombate, región, legendario) y `Entrenador` (id, nombre, medallas, equipo de `Pokemon`).
+20 ejercicios de dificultad creciente sobre dos modelos de apoyo: Pokemon (id, nombre, tipo, nivel, poderCombate, región, legendario) y Entrenador (id, nombre, medallas, equipo de Pokemon).
 
 | Clase | Operación principal |
 |---|---|
-| `Ejercicio1` | `filter` por tipo de elemento (criaturas de tipo Fuego). |
-| `Ejercicio2` | `filter` + `map` para transformar nombres a mayúsculas. |
-| `Ejercicio3` | `reduce` para sumar los niveles del equipo. |
-| `Ejercicio4` | `filter` sobre nivel y conteo de resultados. |
-| `Ejercicio5` | `filter` por nivel mayor a 80 y conteo con `collect`. |
-| `Ejercicio6` | `distinct` para eliminar capturas duplicadas. |
-| `Ejercicio7` | `sorted` alfabético de la pokédex. |
-| `Ejercicio8` | `filter` por bandera booleana (listos para evolucionar). |
-| `Ejercicio9` | `sorted` por `Comparator.comparingDouble` (poder de combate descendente). |
-| `Ejercicio10` | `map` para proyectar solo los nombres de la pokédex. |
-| `Ejercicio11` | `mapToDouble`/`average` para calcular el promedio de una métrica. |
-| `Ejercicio12` | Recorrido con `forEach` sobre la pokédex. |
-| `Ejercicio13` | `groupingBy` por tipo, agrupando nombres. |
-| `Ejercicio14` | `groupingBy` por región. |
-| `Ejercicio15` | Búsqueda del entrenador con más medallas (campeón de gimnasios). |
-| `Ejercicio16` | `filter` de entrenadores con más de 5 medallas. |
-| `Ejercicio17` | Cálculo del entrenador con mayor poder acumulado de equipo. |
-| `Ejercicio18` | `sorted` + `limit` para obtener el top 5 más fuerte. |
-| `Ejercicio19` | `sorted` con `Comparator` personalizado + `limit` para el top 3. |
-| `Ejercicio20` | Estadísticas combinadas: conteo por tipo y región, total de legendarios, nivel promedio y el Pokémon más fuerte (`reduce`). |
+| Ejercicio1 | filter por tipo de elemento (criaturas de tipo Fuego). |
+| Ejercicio2 | filter + map para transformar nombres a mayúsculas. |
+| Ejercicio3 | reduce para sumar los niveles del equipo. |
+| Ejercicio4 | filter sobre nivel y conteo de resultados. |
+| Ejercicio5 | filter por nivel mayor a 80 y conteo con collect. |
+| Ejercicio6 | distinct para eliminar capturas duplicadas. |
+| Ejercicio7 | sorted alfabético de la pokédex. |
+| Ejercicio8 | filter por bandera booleana (listos para evolucionar). |
+| Ejercicio9 | sorted por Comparator.comparingDouble (poder de combate descendente). |
+| Ejercicio10 | map para proyectar solo los nombres de la pokédex. |
+| Ejercicio11 | mapToDouble/average para calcular el promedio de una métrica. |
+| Ejercicio12 | Recorrido con forEach sobre la pokédex. |
+| Ejercicio13 | groupingBy por tipo, agrupando nombres. |
+| Ejercicio14 | groupingBy por región. |
+| Ejercicio15 | Búsqueda del entrenador con más medallas (campeón de gimnasios). |
+| Ejercicio16 | filter de entrenadores con más de 5 medallas. |
+| Ejercicio17 | Cálculo del entrenador con mayor poder acumulado de equipo. |
+| Ejercicio18 | sorted + limit para obtener el top 5 más fuerte. |
+| Ejercicio19 | sorted con Comparator personalizado + limit para el top 3. |
+| Ejercicio20 | Estadísticas combinadas: conteo por tipo y región, total de legendarios, nivel promedio y el Pokémon más fuerte. |
 
-### Patrones de diseño (`Epatron1` a `Epatron12`)
+### Patrones de diseño (Epatron1 a Epatron12)
 
-Cada carpeta `EpatronN` aísla **un único patrón GoF** aplicado a un mini-caso de uso distinto:
+Cada carpeta EpatronN aísla un único patrón GoFaplicado a un mini-caso de uso distinto:
 
 | Carpeta | Patrón | Caso de uso |
 |---|---|---|
