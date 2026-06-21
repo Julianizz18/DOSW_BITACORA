@@ -106,6 +106,17 @@ Taller integrador de 10 ejercicios. A diferencia de la semana 2, aquí cada ejer
 | Ejercicio9 | Aprobación de créditos bancarios | Strategy + Chain of Responsibility |
 | Ejercicio10 | Editor de texto enriquecido | Command + Decorator |
 
+### Manual de Identidad — Scuderia 44 Legacy
+
+Documento de identidad visual y conceptual desarrollado como complemento de la Semana 3. Este manual define la esencia de la marca, sus elementos gráficos, colores, tipografía, público objetivo y lineamientos de uso.
+
+El producto central, *Scuderia 44 Legacy*, es un guante inspirado en la Fórmula 1 que combina los colores característicos de Ferrari con el número 44 de Lewis Hamilton. Su diseño en rojo, blanco y detalles dorados transmite velocidad, precisión, pasión y excelencia.
+
+La identidad de la marca también refleja rasgos de la personalidad de su creador: disciplina, perseverancia, competitividad, creatividad y búsqueda constante de superación. De esta manera, el producto no solo representa un accesorio deportivo, sino también una filosofía de liderazgo, esfuerzo y determinación aplicada tanto dentro como fuera de la pista.
+
+El manual establece las bases visuales y comunicativas de la marca, garantizando coherencia en su presentación y fortaleciendo el mensaje de innovación, rendimiento y legado que caracteriza a Scuderia 44 Legacy.
+
+
 ---
 
 ## Tecnologías
