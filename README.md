@@ -1,230 +1,186 @@
-# DOSW_BITACORA
+# Bitácora DOSW — Julián Tinjacá
 
-Bitácora de Julián Tinjacá para el curso de Diseño y Operación de Sistemas de Software (DOSW).
+Repositorio de práctica para el curso de Diseño y Operación de Sistemas de Software. Aquí va quedando el registro de cada semana: primero el repaso de la Stream API de Java, después la implementación aislada de los patrones de diseño GoF, y por último un taller donde esos patrones se combinan de a dos sobre casos de negocio completos.
 
-Este repositorio reúne, semana a semana, los ejercicios de práctica realizados en clase y en talleres: desde el manejo de la Stream API de Java hasta la aplicación de los patrones de diseño GoF (creacionales, estructurales y de comportamiento) sobre distintos casos de estudio.
+Índice rápido:
 
----
+1. Mapa del repositorio
+2. Semana 1 — Streams
+3. Semana 2 — Pokémon (streams y patrones)
+4. Semana 3 — Taller 4 y Manual de Identidad
+5. Tecnologías y cómo ejecutar
 
-## Estructura del repositorio
+## 1. Mapa del repositorio
 
 ```text
 src/main/dosw/
 ├── semana1/
-│   └── streams/          → Introducción a la API de Streams de Java
+│   └── streams/        Cinco ejercicios de introducción a Streams
 ├── semana2/
-│   └── pokemon/          → Streams avanzados + primer acercamiento a patrones de diseño
-│       ├── Ejercicio1..20
-│       └── Epatron1..12
+│   └── pokemon/
+│       ├── Ejercicio1..20   Streams aplicados sobre Pokémon y Entrenadores
+│       └── Epatron1..12     Un patrón de diseño aislado por carpeta
 └── semana3/
     └── Taller4/
-        └── Ejercicio1..10
+        └── Ejercicio1..10   Dos patrones combinados por ejercicio
 ```
 
-> Los ejercicios de semana3/Taller4 ya cuentan cada uno con su propio README (descripción del problema, solución propuesta, patrones implementados, estructura de clases y ejecución), así que aquí solo se indexan. El resto de la bitácora (semana 1 y semana 2) se describe completa en este mismo documento.
+Los diez ejercicios de `semana3/Taller4` tienen cada uno su propio README (problema, solución, patrones, clases y ejecución), por lo que más abajo solo se indexan. Todo lo demás —semana 1 completa y semana 2 completa— queda documentado aquí mismo.
 
----
+## 2. Semana 1 — Streams
 
-## Semana 1 — Streams (semana1/streams)
+Carpeta: `semana1/streams`. Cinco ejercicios cortos para practicar `filter`, `map`, `sorted`, `collect`, `reduce` y `anyMatch` sobre listas de números, palabras y un par de `record` (usuarios y transacciones).
 
-Cinco ejercicios introductorios a la API de Streams de Java (filter, map, sorted, collect, reduce, anyMatch) usando listas de números, palabras y record (usuarios, transacciones).
+1. **Ejercicio1** — de una lista de enteros, filtra los valores que son a la vez mayores a 10 y pares.
+2. **Ejercicio2** — filtra palabras de más de 4 letras, las pasa a mayúsculas, las ordena alfabéticamente y cuenta cuántas quedan.
+3. **Ejercicio3** — con `record Usuario(id, nombre, edad, activo)`, extrae los nombres de los usuarios activos.
+4. **Ejercicio4** — reutiliza ese mismo `record Usuario` para quedarse solo con los activos y mayores de edad.
+5. **Ejercicio5** — con `record Transaction(id, amount, approved)`, usa `anyMatch` para detectar si hay transacciones sin aprobar.
 
-| Clase | Descripción |
+## 3. Semana 2 — Pokémon: streams y patrones
+
+Carpeta: `semana2/pokemon`. Dos modelos de apoyo se repiten en todo el bloque: `Pokemon` (id, nombre, tipo, nivel, poderCombate, región, legendario) y `Entrenador` (id, nombre, medallas, equipo de Pokemon).
+
+### 3.1 Streams — Ejercicio1 a Ejercicio20
+
+| # | Qué hace |
 |---|---|
-| Ejercicio1 | Filtra de una lista de enteros los valores que son a la vez mayores a 10 y pares. |
-| Ejercicio2 | Filtra palabras de longitud mayor a 4, las convierte a mayúsculas, las ordena alfabéticamente y cuenta cuántas quedan. |
-| Ejercicio3 | Usa un record Usuario(id, nombre, edad, activo) para extraer los nombres de los usuarios activos. |
-| Ejercicio4 | Reutiliza el record Usuario para filtrar usuarios activos y mayores de edad. |
-| Ejercicio5 | Usa un record Transaction(id, amount, approved) para verificar con anyMatch si existen transacciones no aprobadas. |
+| 1 | filtra por tipo de elemento (criaturas de tipo Fuego) |
+| 2 | filter + map para pasar los nombres a mayúsculas |
+| 3 | reduce para sumar los niveles del equipo |
+| 4 | filter por nivel y conteo de resultados |
+| 5 | filter por nivel mayor a 80 y conteo con collect |
+| 6 | distinct para quitar capturas duplicadas |
+| 7 | sorted alfabético de la pokédex |
+| 8 | filter por bandera booleana (listos para evolucionar) |
+| 9 | sorted con Comparator.comparingDouble (poder de combate descendente) |
+| 10 | map para proyectar solo los nombres |
+| 11 | mapToDouble + average para una métrica promedio |
+| 12 | recorrido con forEach |
+| 13 | groupingBy por tipo, agrupando nombres |
+| 14 | groupingBy por región |
+| 15 | búsqueda del entrenador con más medallas |
+| 16 | filter de entrenadores con más de 5 medallas |
+| 17 | entrenador con mayor poder acumulado de equipo |
+| 18 | sorted + limit, top 5 más fuerte |
+| 19 | sorted con Comparator personalizado + limit, top 3 |
+| 20 | estadísticas combinadas: conteo por tipo y región, legendarios, nivel promedio y el más fuerte |
 
----
+### 3.2 Patrones de diseño — Epatron1 a Epatron12
 
-## Semana 2 — Pokémon: Streams y Patrones (semana2/pokemon)
-
-### Streams (Ejercicio1 a Ejercicio20)
-
-20 ejercicios de dificultad creciente sobre dos modelos de apoyo: Pokemon (id, nombre, tipo, nivel, poderCombate, región, legendario) y Entrenador (id, nombre, medallas, equipo de Pokemon).
-
-| Clase | Operación principal |
-|---|---|
-| Ejercicio1 | filter por tipo de elemento (criaturas de tipo Fuego). |
-| Ejercicio2 | filter + map para transformar nombres a mayúsculas. |
-| Ejercicio3 | reduce para sumar los niveles del equipo. |
-| Ejercicio4 | filter sobre nivel y conteo de resultados. |
-| Ejercicio5 | filter por nivel mayor a 80 y conteo con collect. |
-| Ejercicio6 | distinct para eliminar capturas duplicadas. |
-| Ejercicio7 | sorted alfabético de la pokédex. |
-| Ejercicio8 | filter por bandera booleana (listos para evolucionar). |
-| Ejercicio9 | sorted por Comparator.comparingDouble (poder de combate descendente). |
-| Ejercicio10 | map para proyectar solo los nombres de la pokédex. |
-| Ejercicio11 | mapToDouble/average para calcular el promedio de una métrica. |
-| Ejercicio12 | Recorrido con forEach sobre la pokédex. |
-| Ejercicio13 | groupingBy por tipo, agrupando nombres. |
-| Ejercicio14 | groupingBy por región. |
-| Ejercicio15 | Búsqueda del entrenador con más medallas (campeón de gimnasios). |
-| Ejercicio16 | filter de entrenadores con más de 5 medallas. |
-| Ejercicio17 | Cálculo del entrenador con mayor poder acumulado de equipo. |
-| Ejercicio18 | sorted + limit para obtener el top 5 más fuerte. |
-| Ejercicio19 | sorted con Comparator personalizado + limit para el top 3. |
-| Ejercicio20 | Estadísticas combinadas: conteo por tipo y región, total de legendarios, nivel promedio y el Pokémon más fuerte. |
-
-### Patrones de diseño (Epatron1 a Epatron12)
-
-Cada carpeta EpatronN aísla un único patrón GoF aplicado a un mini-caso de uso distinto:
+Cada carpeta `EpatronN` resuelve un único patrón GoF sobre un mini-caso de uso independiente. Primero el panorama general y después el detalle de clases de cada una.
 
 | Carpeta | Patrón | Caso de uso |
 |---|---|---|
-| Epatron1 | Factory Method | Procesador de pagos: cada subclase de ProcesadorPago fabrica su propio MetodoPago (tarjeta, PayPal, transferencia) sin que el flujo común lo conozca. |
-| Epatron2 | Abstract Factory | Motor de videojuego: ConsolaFactory crea familias completas y compatibles de componentes (control, juego, interfaz) según la consola: PlayStation o Xbox. |
-| Epatron3 | Builder | Fábrica de muñecos: FabricaMuneco (director) ejecuta siempre los mismos pasos de ensamblaje sobre un MunecoBuilder (de acción o clásico) intercambiable. |
-| Epatron4 | Adapter | Estación de servicio: adapta cargadores eléctricos (cargar(kwh)) a la interfaz SurtidorGasolineria.abastecer(litros) que ya usan los vehículos de combustión. |
-| Epatron5 | Bridge | Formas geométricas (círculo, cuadrado, triángulo) combinables con cualquier color (rojo, azul, verde) sin multiplicar clases. |
-| Epatron6 | Composite | Bodega con productos individuales y cajas que pueden contener productos u otras cajas, calculando el precio total de forma recursiva. |
-| Epatron7 | Decorator | Barco de guerra equipable con módulos combinables (blindaje, radar, misiles, antitorpedos) que modifican ataque y defensa apilándose dinámicamente. |
-| Epatron8 | Chain of Responsibility | Control migratorio: la solicitud del viajero pasa por una cadena de validaciones (pasaporte/visa → antecedentes → motivo de viaje → aprobación). |
-| Epatron9 | Command | Control de videojuego: cada botón (A, B, X, Y) ejecuta un Comando distinto (caminar, saltar, atacar, defenderse) sobre el personaje, sin conocer la acción concreta. |
-| Epatron10 | Sin terminar | Carpeta con una única clase vacía (test.java); no llegó a implementarse el caso de uso ni el patrón. |
-| Epatron11 | Strategy | Aplicación de navegación que calcula rutas (más rápida, más corta, escénica, transporte público) según la estrategia activa. |
-| Epatron12 | Strategy | Ordenador de arreglos que intercambia algoritmos de ordenamiento (burbuja, selección, inserción) en tiempo de ejecución. |
+| Epatron1 | Factory Method | Procesador de pagos: cada subclase de ProcesadorPago fabrica su propio MetodoPago (tarjeta, PayPal, transferencia) |
+| Epatron2 | Abstract Factory | Motor de videojuego: ConsolaFactory arma familias completas de componentes según la consola, PlayStation o Xbox |
+| Epatron3 | Builder | Fábrica de muñecos: un Director ejecuta siempre la misma secuencia de ensamblaje sobre un MunecoBuilder intercambiable |
+| Epatron4 | Adapter | Estación de servicio: adapta cargadores eléctricos a la interfaz que ya usan los vehículos de combustión |
+| Epatron5 | Bridge | Formas geométricas combinables con cualquier color sin multiplicar clases |
+| Epatron6 | Composite | Bodega con productos y cajas que pueden contener productos u otras cajas, precio total recursivo |
+| Epatron7 | Decorator | Barco de guerra equipable con módulos combinables que modifican ataque y defensa |
+| Epatron8 | Chain of Responsibility | Control migratorio: la solicitud del viajero recorre una cadena de validaciones |
+| Epatron9 | Command | Control de videojuego: cada botón ejecuta un Comando distinto sobre el personaje |
+| Epatron10 | — | Sin terminar: solo queda una clase vacía (test.java) |
+| Epatron11 | Strategy | Navegación que calcula rutas (rápida, corta, escénica, transporte público) según la estrategia activa |
+| Epatron12 | Strategy | Ordenador de arreglos que intercambia algoritmos de ordenamiento en tiempo de ejecución |
 
-A continuación, el esquema de clases de cada ejercicio de patrones.
+**Epatron1 — Factory Method**
+- `MetodoPago`: interfaz del producto (procesarPago)
+- `TarjetaCredito`, `PayPal`, `TransferenciaBancaria`: productos concretos
+- `ProcesadorPago`: creador abstracto, declara el factory method y el flujo común (realizarPago)
+- `ProcesadorTarjeta`, `ProcesadorPayPal`, `ProcesadorTransferencia`: creadores concretos, cada uno fabrica su MetodoPago
+- `Main`: ejecuta el flujo con cada procesador
 
-#### Epatron1 — Factory Method
+**Epatron2 — Abstract Factory**
+- `Control`, `Juego`, `InterfazGrafica`: interfaces de productos
+- `ControlPlayStation`, `JuegoPlayStation`, `InterfazGraficaPlayStation`: familia PlayStation
+- `ControlXbox`, `JuegoXbox`, `InterfazGraficaXbox`: familia Xbox
+- `ConsolaFactory`: fábrica abstracta
+- `PlayStationFactory`, `XboxFactory`: fábricas concretas
+- `MotorJuego`: cliente, arma los componentes sin conocer la consola concreta
+- `Main`: clase de prueba
 
-| Clase / Interfaz | Rol |
-|---|---|
-| MetodoPago | Interfaz del producto (procesarPago) |
-| TarjetaCredito, PayPal, TransferenciaBancaria | Productos concretos |
-| ProcesadorPago | Creador abstracto, declara el factory method y el flujo común (realizarPago) |
-| ProcesadorTarjeta, ProcesadorPayPal, ProcesadorTransferencia | Creadores concretos, cada uno fabrica su propio MetodoPago |
-| Main | Clase de prueba, ejecuta el flujo con cada procesador |
+**Epatron3 — Builder**
+- `Muneco`: producto complejo a construir
+- `MunecoBuilder`: interfaz constructora, declara los pasos del ensamblaje
+- `MunecoAccionBuilder`, `MunecoClasicaBuilder`: builders concretos
+- `FabricaMuneco`: director, ejecuta la secuencia de construcción sobre el builder activo
+- `Main`: clase de prueba
 
-#### Epatron2 — Abstract Factory
+**Epatron4 — Adapter**
+- `SurtidorGasolineria`: interfaz objetivo esperada por el cliente
+- `VehiculoCombustion`: implementación nativa de esa interfaz
+- `CargadorElectricoRapido`, `CargadorElectricoLento`: clases adaptadas, interfaz incompatible (cargar)
+- `AdaptadorCargadorRapido`, `AdaptadorCargadorLento`: adaptadores, traducen abastecer a cargar
+- `Main`: clase de prueba
 
-| Clase / Interfaz | Rol |
-|---|---|
-| Control, Juego, InterfazGrafica | Interfaces de productos |
-| ControlPlayStation, JuegoPlayStation, InterfazGraficaPlayStation | Familia de productos PlayStation |
-| ControlXbox, JuegoXbox, InterfazGraficaXbox | Familia de productos Xbox |
-| ConsolaFactory | Fábrica abstracta |
-| PlayStationFactory, XboxFactory | Fábricas concretas |
-| MotorJuego | Cliente, arma los componentes a través de las interfaces sin conocer la consola concreta |
-| Main | Clase de prueba |
+**Epatron5 — Bridge**
+- `Forma`: abstracción, mantiene una referencia a Color
+- `Circulo`, `Cuadrado`, `Triangulo`: abstracciones refinadas
+- `Color`: interfaz de implementación (aplicarColor)
+- `Rojo`, `Azul`, `Verde`: implementaciones concretas del color
+- `Main`: clase de prueba
 
-#### Epatron3 — Builder
+**Epatron6 — Composite**
+- `ItemBodega`: componente, interfaz común para hojas y compuestos
+- `Producto`: hoja, artículo individual con precio fijo
+- `Caja`: compuesto, contiene una lista de ItemBodega y agrega sus resultados
+- `Main`: clase de prueba
 
-| Clase / Interfaz | Rol |
-|---|---|
-| Muneco | Producto complejo a construir |
-| MunecoBuilder | Interfaz constructora, declara los pasos del ensamblaje |
-| MunecoAccionBuilder, MunecoClasicaBuilder | Builders concretos |
-| FabricaMuneco | Director, ejecuta la secuencia de construcción sobre el builder activo |
-| Main | Clase de prueba |
+**Epatron7 — Decorator**
+- `Barco`: componente, contrato común
+- `BarcoBase`: componente concreto, barco sin módulos
+- `ModuloBarco`: decorador abstracto, envuelve un Barco y delega por defecto
+- `BlindajeReforzado`, `RadarAvanzado`, `Misiles`, `SistemaAntitorpedos`: decoradores concretos
+- `Main`: clase de prueba
 
-#### Epatron4 — Adapter
+**Epatron8 — Chain of Responsibility**
+- `ControlMigratorio`: manejador abstracto, mantiene el enlace al siguiente control
+- `ControlPasaporteVisa`, `ControlAntecedentes`, `ControlMotivoViaje`, `AprobacionMigracion`: manejadores concretos, cada uno valida un aspecto y delega al siguiente
+- `Viajero`: objeto de solicitud que recorre la cadena
+- `Main`: clase de prueba
 
-| Clase / Interfaz | Rol |
-|---|---|
-| SurtidorGasolineria | Interfaz objetivo esperada por el cliente |
-| VehiculoCombustion | Implementación nativa de la interfaz objetivo |
-| CargadorElectricoRapido, CargadorElectricoLento | Clases adaptadas, interfaz incompatible (cargar) |
-| AdaptadorCargadorRapido, AdaptadorCargadorLento | Adaptadores, traducen abastecer a cargar |
-| Main | Clase de prueba |
+**Epatron9 — Command**
+- `Comando`: interfaz del comando (ejecutar)
+- `ComandoCaminar`, `ComandoSaltar`, `ComandoAtacar`, `ComandoDefenderse`: comandos concretos, encapsulan la invocación sobre Personaje
+- `Personaje`: receptor, ejecuta realmente la acción
+- `ControlJuego`: invocador, dispara el comando asignado a cada botón
+- `Main`: clase de prueba
 
-#### Epatron5 — Bridge
+**Epatron10 — pendiente**
+- `test`: clase vacía, nunca se llegó a implementar el caso de uso ni el patrón
 
-| Clase / Interfaz | Rol |
-|---|---|
-| Forma | Abstracción, mantiene una referencia a Color |
-| Circulo, Cuadrado, Triangulo | Abstracciones refinadas |
-| Color | Interfaz de implementación (aplicarColor) |
-| Rojo, Azul, Verde | Implementaciones concretas del color |
-| Main | Clase de prueba |
+**Epatron11 — Strategy**
+- `EstrategiaRuta`: interfaz de la estrategia (calcularRuta)
+- `RutaMasRapida`, `RutaMasCorta`, `RutaEscenica`, `RutaTransportePublico`: estrategias concretas
+- `AplicacionNavegacion`: contexto, usa la estrategia activa para calcular la ruta
+- `Main`: clase de prueba
 
-#### Epatron6 — Composite
+**Epatron12 — Strategy**
+- `EstrategiaOrdenamiento`: interfaz de la estrategia (ordenar)
+- `OrdenamientoBurbuja`, `OrdenamientoSeleccion`, `OrdenamientoInsercion`: algoritmos concretos de ordenamiento
+- `Ordenador`: contexto, ejecuta el ordenamiento usando la estrategia activa
+- `Main`: clase de prueba
 
-| Clase / Interfaz | Rol |
-|---|---|
-| ItemBodega | Componente, interfaz común para hojas y compuestos |
-| Producto | Hoja, artículo individual con precio fijo |
-| Caja | Compuesto, contiene una lista de ItemBodega y agrega sus resultados |
-| Main | Clase de prueba |
+## 4. Semana 3 — Taller 4 y Manual de Identidad
 
-#### Epatron7 — Decorator
+Carpeta: `semana3/Taller4`. Diez ejercicios integradores; a diferencia de la semana 2, cada uno combina dos patrones de diseño trabajando juntos sobre un caso de negocio completo. Cada ejercicio ya documenta en su propio README el problema, la solución, las clases y cómo ejecutarlo:
 
-| Clase / Interfaz | Rol |
-|---|---|
-| Barco | Componente, contrato común |
-| BarcoBase | Componente concreto, barco sin módulos |
-| ModuloBarco | Decorador abstracto, envuelve un Barco y delega por defecto |
-| BlindajeReforzado, RadarAvanzado, Misiles, SistemaAntitorpedos | Decoradores concretos |
-| Main | Clase de prueba |
-
-#### Epatron8 — Chain of Responsibility
-
-| Clase / Interfaz | Rol |
-|---|---|
-| ControlMigratorio | Manejador abstracto, mantiene el enlace al siguiente control |
-| ControlPasaporteVisa, ControlAntecedentes, ControlMotivoViaje, AprobacionMigracion | Manejadores concretos, cada uno valida un aspecto y delega al siguiente |
-| Viajero | Objeto de solicitud que recorre la cadena |
-| Main | Clase de prueba |
-
-#### Epatron9 — Command
-
-| Clase / Interfaz | Rol |
-|---|---|
-| Comando | Interfaz del comando (ejecutar) |
-| ComandoCaminar, ComandoSaltar, ComandoAtacar, ComandoDefenderse | Comandos concretos, encapsulan la invocación sobre Personaje |
-| Personaje | Receptor, clase que realmente ejecuta la acción |
-| ControlJuego | Invocador, dispara el comando asignado a cada botón |
-| Main | Clase de prueba |
-
-#### Epatron10 — Pendiente
-
-| Clase / Interfaz | Rol |
-|---|---|
-| test | Clase vacía, no se llegó a implementar el caso de uso ni el patrón |
-
-#### Epatron11 — Strategy
-
-| Clase / Interfaz | Rol |
-|---|---|
-| EstrategiaRuta | Interfaz de la estrategia (calcularRuta) |
-| RutaMasRapida, RutaMasCorta, RutaEscenica, RutaTransportePublico | Estrategias concretas |
-| AplicacionNavegacion | Contexto, usa la estrategia activa para calcular la ruta |
-| Main | Clase de prueba |
-
-#### Epatron12 — Strategy
-
-| Clase / Interfaz | Rol |
-|---|---|
-| EstrategiaOrdenamiento | Interfaz de la estrategia (ordenar) |
-| OrdenamientoBurbuja, OrdenamientoSeleccion, OrdenamientoInsercion | Algoritmos concretos de ordenamiento |
-| Ordenador | Contexto, ejecuta el ordenamiento usando la estrategia activa |
-| Main | Clase de prueba |
-
----
-
-## Semana 3 — Taller 4: Combinación de Patrones (semana3/Taller4)
-
-Taller integrador de 10 ejercicios. A diferencia de la semana 2, aquí cada ejercicio combina dos patrones de diseño trabajando juntos sobre un caso de negocio completo. Cada uno ya tiene su propia descripción (problema, solución, clases y ejecución) en su respectivo README:
-
-| Ejercicio | Caso de negocio | Patrones combinados |
-|---|---|---|
-| Ejercicio1 | Plataforma de pagos inteligente | Strategy + Factory Method |
-| Ejercicio2 | Notificaciones multicanal | Observer + Builder |
-| Ejercicio3 | Reportes empresariales (PDF/Excel/CSV) | Template Method + configuración por formato |
-| Ejercicio4 | Personajes de videojuego | Builder + Decorator |
-| Ejercicio5 | Integración con impresora legada | Adapter + Facade |
-| Ejercicio6 | Monitoreo de servidores | Strategy + Observer |
-| Ejercicio7 | Pipeline CI/CD de commits | Chain of Responsibility + State |
-| Ejercicio8 | Reservas de hotel | Builder + Observer |
-| Ejercicio9 | Aprobación de créditos bancarios | Strategy + Chain of Responsibility |
-| Ejercicio10 | Editor de texto enriquecido | Command + Decorator |
+- **Ejercicio1** — Plataforma de pagos inteligente → Strategy + Factory Method
+- **Ejercicio2** — Notificaciones multicanal → Observer + Builder
+- **Ejercicio3** — Reportes empresariales (PDF/Excel/CSV) → Template Method + configuración por formato
+- **Ejercicio4** — Personajes de videojuego → Builder + Decorator
+- **Ejercicio5** — Integración con impresora legada → Adapter + Facade
+- **Ejercicio6** — Monitoreo de servidores → Strategy + Observer
+- **Ejercicio7** — Pipeline CI/CD de commits → Chain of Responsibility + State
+- **Ejercicio8** — Reservas de hotel → Builder + Observer
+- **Ejercicio9** — Aprobación de créditos bancarios → Strategy + Chain of Responsibility
+- **Ejercicio10** — Editor de texto enriquecido → Command + Decorator
 
 ### Manual de Identidad — Scuderia 44 Legacy
 
-Documento de identidad visual y conceptual desarrollado como complemento de la Semana 3. Este manual define la esencia de la marca, sus elementos gráficos, colores, tipografía, público objetivo y lineamientos de uso.
+Documento de identidad visual y conceptual desarrollado como complemento de la Semana 3. Define la esencia de la marca, sus elementos gráficos, colores, tipografía, público objetivo y lineamientos de uso.
 
 El producto central, *Scuderia 44 Legacy*, es un guante inspirado en la Fórmula 1 que combina los colores característicos de Ferrari con el número 44 de Lewis Hamilton. Su diseño en rojo, blanco y detalles dorados transmite velocidad, precisión, pasión y excelencia.
 
@@ -232,16 +188,12 @@ La identidad de la marca también refleja rasgos de la personalidad de su creado
 
 El manual establece las bases visuales y comunicativas de la marca, garantizando coherencia en su presentación y fortaleciendo el mensaje de innovación, rendimiento y legado que caracteriza a Scuderia 44 Legacy.
 
----
+## 5. Tecnologías y cómo ejecutar
 
-## Tecnologías
+- Lenguaje: Java, con uso de `record`, Stream API, `Comparator` y Collectors avanzados.
+- IDE: IntelliJ IDEA (carpeta `.idea/` incluida en el repositorio).
 
-- Lenguaje: Java (uso de record, Stream API, Comparator, Collectors avanzados)
-- IDE: IntelliJ IDEA (carpeta `.idea/` incluida)
-
-## Ejecución general
-
-Cada ejercicio es autocontenido. Para los patrones de la semana 2 y el Taller 4:
+Para los ejercicios de patrones (semana 2 y Taller 4), cada carpeta trae su propio `Main`:
 
 ```bash
 cd src/main/dosw/<semana>/<carpeta-del-ejercicio>
@@ -249,7 +201,7 @@ javac *.java
 java Main
 ```
 
-Para los streams de la semana 1 y los Ejercicio1..20 de la semana 2, cada clase trae su propio main y se ejecuta individualmente:
+Para los streams de la semana 1 y los `Ejercicio1..20` de la semana 2, cada clase es ejecutable por separado:
 
 ```bash
 cd src/main/dosw/semana1/streams
