@@ -21,49 +21,77 @@ src/main/dosw/
         └── Ejercicio1..10    dos patrones de diseño sobre un caso de negocio real
 ```
 
-Cada carpeta de ejercicio es independiente y contiene sus propias clases Java y, cuando aplica, su propio `Main.java` ejecutable.
+> 📌 Los ejercicios de **`semana3/Taller4`** ya cuentan cada uno con su propio `README.md` (descripción del problema, solución propuesta, patrones implementados, estructura de clases y ejecución), así que aquí solo se indexan. El resto de la bitácora (semana 1 y semana 2) se describe completa en este mismo documento.
 
 ---
 
 ## Semana 1 — Streams (`semana1/streams`)
 
-Cinco ejercicios introductorios a la API de Streams de Java (`filter`, `map`, `sorted`, `collect`, `anyMatch`, etc.) usando listas de números, palabras y `records` (usuarios, transacciones).
+Cinco ejercicios introductorios a la API de Streams de Java (`filter`, `map`, `sorted`, `collect`, `reduce`, `anyMatch`) usando listas de números, palabras y `record` (usuarios, transacciones).
 
-📄 Ver [`semana1/streams/README.md`](src/main/dosw/semana1/streams/README.md)
+| Clase | Descripción |
+|---|---|
+| `Ejercicio1` | Filtra de una lista de enteros los valores que son a la vez **mayores a 10** y **pares**. |
+| `Ejercicio2` | Filtra palabras de longitud mayor a 4, las convierte a mayúsculas, las ordena alfabéticamente y cuenta cuántas quedan. |
+| `Ejercicio3` | Usa un `record Usuario(id, nombre, edad, activo)` para extraer los nombres de los usuarios activos. |
+| `Ejercicio4` | Reutiliza el `record Usuario` para filtrar usuarios activos y mayores de edad. |
+| `Ejercicio5` | Usa un `record Transaction(id, amount, approved)` para verificar con `anyMatch` si existen transacciones no aprobadas. |
 
 ---
 
 ## Semana 2 — Pokémon: Streams y Patrones (`semana2/pokemon`)
 
-Dos bloques de práctica bajo la temática Pokémon:
+### Streams (`Ejercicio1` a `Ejercicio20`)
 
-- **`Ejercicio1` a `Ejercicio20`**: 20 ejercicios de Stream API de dificultad creciente (filtrado, agrupamiento con `groupingBy`, reducción, ordenamiento por comparadores, estadísticas) aplicados sobre una Pokédex y un listado de entrenadores.
-  📄 Ver [`semana2/pokemon/README.md`](src/main/dosw/semana2/pokemon/README.md)
+20 ejercicios de dificultad creciente sobre dos modelos de apoyo: `Pokemon` (id, nombre, tipo, nivel, poderCombate, región, legendario) y `Entrenador` (id, nombre, medallas, equipo de `Pokemon`).
 
-- **`Epatron1` a `Epatron12`**: doce mini-ejercicios, cada uno dedicado a implementar **un único patrón de diseño GoF** de forma aislada (Strategy, Abstract Factory, Builder, Adapter, Bridge, Composite, Decorator, Chain of Responsibility, Command, etc.). Cada carpeta tiene su propio README explicando el patrón y el caso de uso.
-
-| Carpeta | Patrón |
+| Clase | Operación principal |
 |---|---|
-| [Epatron1](src/main/dosw/semana2/pokemon/Epatron1/README.md) | Factory Method |
-| [Epatron2](src/main/dosw/semana2/pokemon/Epatron2/README.md) | Abstract Factory |
-| [Epatron3](src/main/dosw/semana2/pokemon/Epatron3/README.md) | Builder |
-| [Epatron4](src/main/dosw/semana2/pokemon/Epatron4/README.md) | Adapter |
-| [Epatron5](src/main/dosw/semana2/pokemon/Epatron5/README.md) | Bridge |
-| [Epatron6](src/main/dosw/semana2/pokemon/Epatron6/README.md) | Composite |
-| [Epatron7](src/main/dosw/semana2/pokemon/Epatron7/README.md) | Decorator |
-| [Epatron8](src/main/dosw/semana2/pokemon/Epatron8/README.md) | Chain of Responsibility |
-| [Epatron9](src/main/dosw/semana2/pokemon/Epatron9/README.md) | Command |
-| [Epatron10](src/main/dosw/semana2/pokemon/Epatron10/README.md) | (pendiente / sin implementar) |
-| [Epatron11](src/main/dosw/semana2/pokemon/Epatron11/README.md) | Strategy |
-| [Epatron12](src/main/dosw/semana2/pokemon/Epatron12/README.md) | Strategy |
+| `Ejercicio1` | `filter` por tipo de elemento (criaturas de tipo Fuego). |
+| `Ejercicio2` | `filter` + `map` para transformar nombres a mayúsculas. |
+| `Ejercicio3` | `reduce` para sumar los niveles del equipo. |
+| `Ejercicio4` | `filter` sobre nivel y conteo de resultados. |
+| `Ejercicio5` | `filter` por nivel mayor a 80 y conteo con `collect`. |
+| `Ejercicio6` | `distinct` para eliminar capturas duplicadas. |
+| `Ejercicio7` | `sorted` alfabético de la pokédex. |
+| `Ejercicio8` | `filter` por bandera booleana (listos para evolucionar). |
+| `Ejercicio9` | `sorted` por `Comparator.comparingDouble` (poder de combate descendente). |
+| `Ejercicio10` | `map` para proyectar solo los nombres de la pokédex. |
+| `Ejercicio11` | `mapToDouble`/`average` para calcular el promedio de una métrica. |
+| `Ejercicio12` | Recorrido con `forEach` sobre la pokédex. |
+| `Ejercicio13` | `groupingBy` por tipo, agrupando nombres. |
+| `Ejercicio14` | `groupingBy` por región. |
+| `Ejercicio15` | Búsqueda del entrenador con más medallas (campeón de gimnasios). |
+| `Ejercicio16` | `filter` de entrenadores con más de 5 medallas. |
+| `Ejercicio17` | Cálculo del entrenador con mayor poder acumulado de equipo. |
+| `Ejercicio18` | `sorted` + `limit` para obtener el top 5 más fuerte. |
+| `Ejercicio19` | `sorted` con `Comparator` personalizado + `limit` para el top 3. |
+| `Ejercicio20` | Estadísticas combinadas: conteo por tipo y región, total de legendarios, nivel promedio y el Pokémon más fuerte (`reduce`). |
+
+### Patrones de diseño (`Epatron1` a `Epatron12`)
+
+Cada carpeta `EpatronN` aísla **un único patrón GoF** aplicado a un mini-caso de uso distinto:
+
+| Carpeta | Patrón | Caso de uso |
+|---|---|---|
+| `Epatron1` | **Factory Method** | Procesador de pagos: cada subclase de `ProcesadorPago` fabrica su propio `MetodoPago` (tarjeta, PayPal, transferencia) sin que el flujo común lo conozca. |
+| `Epatron2` | **Abstract Factory** | Motor de videojuego: `ConsolaFactory` crea familias completas y compatibles de componentes (control, juego, interfaz) según la consola — PlayStation o Xbox. |
+| `Epatron3` | **Builder** | Fábrica de muñecos: `FabricaMuneco` (director) ejecuta siempre los mismos pasos de ensamblaje sobre un `MunecoBuilder` (de acción o clásico) intercambiable. |
+| `Epatron4` | **Adapter** | Estación de servicio: adapta cargadores eléctricos (`cargar(kwh)`) a la interfaz `SurtidorGasolineria.abastecer(litros)` que ya usan los vehículos de combustión. |
+| `Epatron5` | **Bridge** | Formas geométricas (círculo, cuadrado, triángulo) combinables con cualquier color (rojo, azul, verde) sin multiplicar clases. |
+| `Epatron6` | **Composite** | Bodega con productos individuales y cajas que pueden contener productos u otras cajas, calculando el precio total de forma recursiva. |
+| `Epatron7` | **Decorator** | Barco de guerra equipable con módulos combinables (blindaje, radar, misiles, antitorpedos) que modifican ataque/defensa apilándose dinámicamente. |
+| `Epatron8` | **Chain of Responsibility** | Control migratorio: la solicitud del viajero pasa por una cadena de validaciones (pasaporte/visa → antecedentes → motivo de viaje → aprobación). |
+| `Epatron9` | **Command** | Control de videojuego: cada botón (A, B, X, Y) ejecuta un `Comando` distinto (caminar, saltar, atacar, defenderse) sobre el personaje, sin conocer la acción concreta. |
+| `Epatron10` | *(sin terminar)* | Carpeta con una única clase vacía (`test.java`); no llegó a implementarse el caso de uso ni el patrón. |
+| `Epatron11` | **Strategy** | Aplicación de navegación que calcula rutas (más rápida, más corta, escénica, transporte público) según la estrategia activa. |
+| `Epatron12` | **Strategy** | Ordenador de arreglos que intercambia algoritmos de ordenamiento (burbuja, selección, inserción) en tiempo de ejecución. |
 
 ---
 
 ## Semana 3 — Taller 4: Combinación de Patrones (`semana3/Taller4`)
 
-Taller integrador de 10 ejercicios. A diferencia de la semana 2, aquí **cada ejercicio combina dos patrones de diseño** trabajando juntos sobre un caso de negocio completo (pagos, notificaciones, reportes, videojuegos, sistemas legados, monitoreo, CI/CD, hotelería, créditos bancarios, editor de texto).
-
-Cada ejercicio ya cuenta con su propio README detallado (descripción del problema, solución propuesta, patrones implementados, estructura de clases y modo de ejecución):
+Taller integrador de 10 ejercicios. A diferencia de la semana 2, aquí **cada ejercicio combina dos patrones de diseño** trabajando juntos sobre un caso de negocio completo. Cada uno **ya tiene su propia descripción** (problema, solución, clases y ejecución) en su respectivo README:
 
 | Ejercicio | Caso de negocio | Patrones combinados |
 |---|---|---|
@@ -87,7 +115,7 @@ Cada ejercicio ya cuenta con su propio README detallado (descripción del proble
 
 ## Ejecución general
 
-Cada ejercicio es autocontenido. Para ejecutar cualquiera de ellos:
+Cada ejercicio es autocontenido. Para los patrones de la semana 2 y el Taller 4:
 
 ```bash
 cd src/main/dosw/<semana>/<carpeta-del-ejercicio>
@@ -95,4 +123,10 @@ javac *.java
 java Main
 ```
 
-(En la semana 1 y en los `Ejercicio1..20` de la semana 2, cada clase es ejecutable por sí misma, ya que cada una trae su propio `main`.)
+Para los streams de la semana 1 y los `Ejercicio1..20` de la semana 2, cada clase trae su propio `main` y se ejecuta individualmente:
+
+```bash
+cd src/main/dosw/semana1/streams
+javac Ejercicio1.java
+java main.dosw.semana1.streams.Ejercicio1
+```
